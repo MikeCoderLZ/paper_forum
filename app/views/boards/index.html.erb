@@ -1,0 +1,9 @@
+<h1> <%= @board.name %> </h1>
+
+<%= @board.description %>
+
+<% @subboards.each do |child| %>
+
+    <h2> <%= child.name %> </h2>
+    
+<% end %>
