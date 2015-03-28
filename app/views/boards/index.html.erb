@@ -17,5 +17,6 @@ Parent id: <%= @board.parent %>
             data: { confirm: 'Are you sure?' } %>
     
 <% end %>
+<hr></hr>
 
 <%= link_to 'new subboard', new_board_path( :parent_id => @board.id ) %>
