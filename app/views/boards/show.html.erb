@@ -2,7 +2,7 @@
 <br/>
 <%= @board.description %>
 <br/>
-Board id: <%= @board.id %>
+Board id:<%= @board.id %>
 <br/>
 Parent id: <%= @board.parent %>
 <br/>
@@ -13,4 +13,4 @@ Parent id: <%= @board.parent %>
     <%= child.description %>
 <% end %>
 
-<%= link_to 'new subboard', new_board_path( :parent_id => @board.id ) %>
+<%= link_to 'new board', new_board_path %> 

@@ -10,4 +10,24 @@ class BoardsController < ApplicationController
         @subboards = Board.where( parent: @board.id )
     end
     
+    def new
+        @board = Board.new
+        @parent = params[:parent_id]
+    end
+    
+    def create
+        @board = Board.new( board_params )
+        
+        if @board.save
+            redirect_to @board
+        else
+            render 'new'
+        end
+    end
+    
+    private
+    def board_params
+        params.require(:board).permit(:name, :description, :parent )
+    end
+    
 end
