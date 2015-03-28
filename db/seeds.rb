@@ -6,8 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# Clear out the Board table
 
-# Create the root board
+Board.all.each do |b| 
+    b.destroy
+end
+
+# Create the root Board
 Board.create( name: "Main",
               description: "Top level discussion board.",
-              parent: nil )
+              parent: nil,
+              id: 1)

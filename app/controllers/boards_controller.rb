@@ -15,6 +15,10 @@ class BoardsController < ApplicationController
         @parent_id = params[:parent_id]
     end
     
+    def edit
+        @board = Board.find(params[:id])
+    end
+    
     def create
         @board = Board.new( board_params )
         
@@ -23,6 +27,25 @@ class BoardsController < ApplicationController
         else
             render 'new'
         end
+    end
+    
+    def update
+        @board = Board.find(params[:id])
+        
+        if @board.update(board_params)
+            redirect_to @board
+        else
+            render 'edit'
+        end
+        
+    end
+    
+    def destroy
+        swap = Board.find(params[:id])
+        @board = Board.find(swap.parent.id)
+        swap.destroy
+        
+        redirect_to @board
     end
     
     private

@@ -1,0 +1,9 @@
+<%= form_for(@board) do |f| %>
+
+    <%= f.text_field :name %>
+    <br/>
+    <%= f.text_area :description %>
+    <br/>
+    <%= f.hidden_field  :parent_id, :value => @board.parent.id %>
+    <%= f.submit %>
+<% end %> 
