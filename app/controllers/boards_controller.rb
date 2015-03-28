@@ -12,7 +12,7 @@ class BoardsController < ApplicationController
     
     def new
         @board = Board.new
-        @parent = params[:parent_id]
+        @parent_id = params[:parent_id]
     end
     
     def create
