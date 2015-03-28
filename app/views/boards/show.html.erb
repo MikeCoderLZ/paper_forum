@@ -6,7 +6,7 @@ Board id:<%= @board.id %>
 <br/>
 Parent id: <%= @board.parent.id %>
 <br/>
-<% @subboards.each do |child| %>
+<% @board.children.each do |child| %>
 
     <h2> <%= link_to child.name, board_path(child) %> </h2>
     <br/>
