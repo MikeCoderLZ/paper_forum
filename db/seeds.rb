@@ -12,6 +12,9 @@ Board.all.each do |b|
     b.destroy
 end
 
+# I may need this later
+# ALTER TABLE boards AUTO_INCREMENT = 1
+
 # Create the root Board
 Board.create( name: "Main",
               description: "Top level discussion board.",
