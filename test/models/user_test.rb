@@ -6,7 +6,10 @@ class UserTest < ActiveSupport::TestCase
   # end
     
     def setup
-        @user1 = User.new(name: "Example User", email: "user@example.com")
+        @user1 = User.new(name: "Example User",
+                          email: "user@example.com",
+                          password: "password",
+                          password_confirmation: "password")
     end
     
     # the original test was copied whole-hog from
@@ -42,6 +45,14 @@ class UserTest < ActiveSupport::TestCase
         assert_not duplicate_user.valid?
     end
     
+    test "emails should be converted to lower case" do
+        uppercase_email = @user1.email.upcase
+        @user1.email = uppercase_email.dup
+        @user1.save
+        assert_not @user1.email.eql? uppercase_email
+    end
+    
+    
     test "name validation should accept limited strings as valid" do
         valid_names = %w[ james_joyce
                           _geofrey43
@@ -51,6 +62,11 @@ class UserTest < ActiveSupport::TestCase
             assert @user1.valid?,
                   "#{valid_name.inspect} should be valid"
         end
+    end
+    
+    test "passwords should have a minimu length" do
+        @user1.password = @user1.password_confirmation = "a" * 5
+        assert_not @user1.valid?
     end
     
 #     test "name validation should reject limited strings as valid" do
