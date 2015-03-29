@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
+  get 'main_page/home'
+
+  get 'main_page/sign_in', as: 'sign_in_main_page'
+
   resources :boards
+  resources :users
     
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'boards#index'
+  root 'main_page#home'
 
   # get '/boards/:parent_id/new' => 'boards#new', as: 'new_subboard'
   
