@@ -1,0 +1,20 @@
+
+$page_grey: #404050;
+$paper_white:  #fbfbfb;
+$edge_white: #e0e0e0;
+
+body {
+    background-color: $page_grey;
+    text-align: center;
+}
+
+.tile {
+    align-content: center;
+    display: inline-block;
+    margin: 0.5%;
+    width: 48.8%;
+    min-height: 8ex;
+    font-size: x-large;
+    background-color: $paper_white;
+    border-radius: 1pt;
+}

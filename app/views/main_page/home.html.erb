@@ -1,6 +1,20 @@
 <h1>Welcome to the Forum</h1>
 <hr></hr>
+<nav>
+    <div class="tile" id="intro">
+        About the forum
+    </div>
+    <div class="tile" id="signup">
+        <%= link_to 'sign in', sign_in_main_page_path %>
+    </div>
+    <div class="tile" id="setup_profile">
+        Setup your Profile
+    </div>
+    <div class="tile" id="to_main_board">
+        <%= link_to 'board index', boards_path %>
+    </div>
+</nav>
 
-<%= link_to 'board index', boards_path %>
+
 <br/>
-<%= link_to 'sign in', sign_in_main_page_path %>
+

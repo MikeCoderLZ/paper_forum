@@ -1,0 +1,12 @@
+What we have so far:
+
+Boards can be created and destroyed.
+Boards know of their parent and their children.
+Boards display their immediate children.
+Users exist, and have a name and email address attribute.
+Rudimentary intro screen and redirect to creating a new user, but
+it goes nowhere.
+
+--------------
+
+User needs to validate it's current attributes.

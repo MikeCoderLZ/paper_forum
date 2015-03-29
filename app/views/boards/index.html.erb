@@ -1,3 +1,5 @@
+
+<div class="tile">
 <h1> <%= @board.name %> </h1>
 <br/>
 <%= @board.description %>
@@ -5,7 +7,9 @@
 Board id: <%= @board.id %>
 <br/>
 Parent id: <%= @board.parent %>
+</div>
 <br/>
+<div class="tile">
 <% @board.children.each do |child| %>
 
     <h2><%= link_to child.name, board_path(child) %></h2>
@@ -17,6 +21,8 @@ Parent id: <%= @board.parent %>
             data: { confirm: 'Are you sure?' } %>
     
 <% end %>
+</div>
+<br/>
 <hr></hr>
 
 <%= link_to 'new subboard', new_board_path( :parent_id => @board.id ) %>
