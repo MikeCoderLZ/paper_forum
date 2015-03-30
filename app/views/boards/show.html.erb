@@ -1,17 +1,38 @@
-<h1> <%= @board.name %> </h1>
+<nav>
+<div class="bar" id="topbar">
+    <h1> <%= @board.name.upcase %> </h1>
+</div>
+<div class="bar" id="dummy_bar"></div>
+</nav>
+
 <%= @board.description %>
 <br/>
+
+<div class="grid wide">
+    <div class="grid_tile pastel1">FAQ</div>
+    <div class="grid_tile pastel2">Rules</div>
+    <div class="grid_tile pastel3">Resources</div>
+</div>
+
+<div class="container wide">
+
 <% @board.children.each do |child| %>
 
-    <h2> <%= link_to child.name, board_path(child) %> </h2>
-    <br/>
-    <%= child.description %>
-    <br/>
-    <%= link_to 'edit', edit_board_path( child ) %>
-    <%= link_to 'delete', board_path( child ),
-            method: :delete,
-            data: { confirm: 'Are you sure?' } %>
+    <div class="item">
+        <%= link_to child.name, board_path(child) %>
+        <%= child.description %>
+        <%= link_to 'edit', edit_board_path( child ) %>
+        <%= link_to 'delete', board_path( child ),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+    </div>
+        <% if @board.children.last != child %>
+            <hr class="divider"></hr>
+        <% end %>
+        
 <% end %>
+
+</div>
 
 <hr></hr>
 <%= link_to 'view', board_path( @board ) %>

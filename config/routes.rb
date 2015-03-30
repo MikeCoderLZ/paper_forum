@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  get 'main_page/home'
-
-  get 'main_page/sign_in', as: 'sign_in_main_page'
+  get       'login'     => 'sessions#new'
+  post      'login'     => 'sessions#create'
+  delete    'logout'    => 'sessions#destroy'
+  get       'main_page/home'
+  get       'main_page/sign_in', as: 'sign_in_main_page'
 
   resources :boards
   resources :users

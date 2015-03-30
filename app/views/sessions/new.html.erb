@@ -1,0 +1,21 @@
+<div class="tile wide">
+
+<h1 class="label"> Sign In </h1>
+
+<%= form_for(:session, url: login_path) do |f| %>
+
+    <%= render 'shared/error_messages' %>
+
+    <%= f.label :email %>
+    <%= f.email_field :email, class: 'field' %>
+    
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'field' %>
+    
+    <%= f.submit "log in", class: "btn_blank" %>
+
+<% end %>
+
+
+<%= link_to 'New Account', new_user_path, class: "btn_blank label" %>
+</div>

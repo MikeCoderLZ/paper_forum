@@ -2,6 +2,12 @@
 $page_color: #a8c8a0;
 $paper_white:  #f8f5f1;
 $edge_white: #eeddcc;
+$pastel1_base: #f8d0a3;
+$pastel1_edge: #e8af6f;
+$pastel2_base: #c3bbf8;
+$pastel2_edge: #9085dd;
+$pastel3_base: #f8baa3;
+$pastel3_edge: #e69578;
 
 $shadow_color_2: #404060;
 $shadow_color_3: #606077;
@@ -18,6 +24,8 @@ $item_spread_selected: 0px;
 body {
     background-color: $page_color;
     text-align: center;
+    padding: 0px;
+    margin: 0px;
 }
 
 h1 {
@@ -56,9 +64,33 @@ h1 {
     font-family: sans-serif;
 }
 
+.container {
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column nowrap;
+    margin: 12px 0px;
+    padding: 12px 0px 12px 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color: $paper_white;
+    border: 1px solid $edge_white;
+    @include shdw1;
+}
+
+hr.divider {
+    border: 1px solid $edge_white;
+    border-bottom: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    width: 100%;
+    margin: 12px 0px;
+}
+
 .wide {
+    box-sizing: border-box;
     width: 50%;
-    align-self: center;
+    margin-right: 25%;
+    margin-left: 25%;
 }
 
 .field {
@@ -103,3 +135,56 @@ a.tile:hover {
     @include shdw2;
 }
 
+#dummy_bar {
+    box-sizing: border-box;
+    left: 0px;
+    top: 0px;
+    height: 96px;;
+    width: 100%;
+    margin: 0% 0% 16px 0%;
+    background-color: $paper_white;
+    border: 1px solid $edge_white;
+}
+
+#topbar {
+    position: fixed;
+    left: 0px;
+    top: 0%;
+    @include shdw1;
+    display: inline-block;
+    height: 96px;
+    width: 100%;
+
+    background-color: $paper_white;
+    box-sizing: border-box;
+    border: 1px solid $edge_white;
+}
+
+.grid {
+    display: flex;
+    flex-direction: row;
+}
+
+.grid_tile {
+/*    display: inline-block;*/
+    flex-grow: 1;
+    box-sizing: border-box;
+    margin: 4px;
+    padding: 20pt;
+    @include shdw1;
+}
+
+.pastel1 {
+    background-color: $pastel1_base;
+    border: 1px solid $pastel1_edge;
+}
+
+.pastel2 {
+    background-color: $pastel2_base;
+    border: 1px solid $pastel2_edge;
+}
+
+.pastel3 {
+    background-color: $pastel3_base;
+    border: 1px solid $pastel3_edge;
+}
