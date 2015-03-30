@@ -1,0 +1,11 @@
+<div class="tile wide">
+
+    <h1 class="label"> <%= @user.name %> </h1>
+    
+        <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%=message %></div>
+    <% end %>
+    
+    <%= link_to 'forum', boards_path %>
+
+</div>

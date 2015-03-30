@@ -1,12 +1,28 @@
-<h1> create a new account </h1>
 
-<%= form_for(@user) do |f| %>
 
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <br/>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-    <br/>
-    <%= f.submit %>
-<% end %>
+<div class="tile wide">
+
+    <h1>Sign Up</h1>
+
+    <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages' %>
+        
+        <%= f.label :name, class: "label" %>
+        <br/>
+        <%= f.text_field :name, class: "wide field" %>
+        <br/>
+        <%= f.label :email, class: "label" %>
+        <br/>
+        <%= f.email_field :email, class: "wide field" %>
+        <br/>
+        <%= f.label :password, class: "label" %>
+        <br/>
+        <%= f.password_field :password, class: "wide field" %>
+        <br/>
+        <%= f.label :password_confirmation, class: "label" %>
+        <br/>
+        <%= f.password_field :password_confirmation, class: "wide field" %>
+        <br/>
+        <%= f.submit "Create New Account", class: "btn_blank label" %>
+    <% end %>
+</div>

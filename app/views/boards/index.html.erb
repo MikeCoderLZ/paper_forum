@@ -1,15 +1,9 @@
 
-<div class="tile">
+<div class="tile wide">
 <h1> <%= @board.name %> </h1>
-<br/>
 <%= @board.description %>
-<br/>
-Board id: <%= @board.id %>
-<br/>
-Parent id: <%= @board.parent %>
 </div>
-<br/>
-<div class="tile">
+<div class="tile wide">
 <% @board.children.each do |child| %>
 
     <h2><%= link_to child.name, board_path(child) %></h2>

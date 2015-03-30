@@ -1,10 +1,5 @@
 <h1> <%= @board.name %> </h1>
-<br/>
 <%= @board.description %>
-<br/>
-Board id:<%= @board.id %>
-<br/>
-Parent id: <%= @board.parent_id %>
 <br/>
 <% @board.children.each do |child| %>
 
