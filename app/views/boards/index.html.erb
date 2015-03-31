@@ -1,22 +1,35 @@
+<header class="fixed">
+    <div class="header_container left">
+        <div class="icon">P</div>
+    </div>
+    <div class="header_container header_title">
+        <h1><%= @board.name %></h1>
+        <%= @board.description %>
+    </div>
+    <div class="header_container right">
+        <a class="icon" href= <%=new_board_path( :parent_id => @board.id )%> >NS</a>
+    </div>
+</header>
 
-<div class="tile wide">
-<h1> <%= @board.name %> </h1>
-<%= @board.description %>
+<div class="content_field">
+    <div class="content_container">
+        <% if @board.children.any? %>
+            <div class="tile wide">
+                <% @board.children.each do |child| %>
+
+                    <h2><%= link_to child.name, board_path(child) %></h2>
+                    <%= child.description %>
+                    <br/>
+                    <%= link_to 'edit', edit_board_path( child ) %>
+                    <%= link_to 'delete', board_path( child ),
+                            method: :delete,
+                            data: { confirm: 'Are you sure?' } %>
+                    <% if child != @board.children.last %>
+                        <hr></hr>
+                    <% end %>
+                    
+                <% end %>
+            </div>
+        <% end %>
+    </div>
 </div>
-<div class="tile wide">
-<% @board.children.each do |child| %>
-
-    <h2><%= link_to child.name, board_path(child) %></h2>
-    <%= child.description %>
-    <br/>
-    <%= link_to 'edit', edit_board_path( child ) %>
-    <%= link_to 'delete', board_path( child ),
-            method: :delete,
-            data: { confirm: 'Are you sure?' } %>
-    
-<% end %>
-</div>
-<br/>
-<hr></hr>
-
-<%= link_to 'new subboard', new_board_path( :parent_id => @board.id ) %>

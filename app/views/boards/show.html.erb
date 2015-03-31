@@ -1,45 +1,41 @@
-<nav>
-<div class="bar" id="topbar">
-    <h1> <%= @board.name.upcase %> </h1>
-</div>
-<div class="bar" id="dummy_bar"></div>
-</nav>
-
-<%= @board.description %>
-<br/>
-
-<div class="grid wide">
-    <div class="grid_tile pastel1">FAQ</div>
-    <div class="grid_tile pastel2">Rules</div>
-    <div class="grid_tile pastel3">Resources</div>
-</div>
-
-<div class="container wide">
-
-<% @board.children.each do |child| %>
-
-    <div class="item">
-        <%= link_to child.name, board_path(child) %>
-        <%= child.description %>
-        <%= link_to 'edit', edit_board_path( child ) %>
-        <%= link_to 'delete', board_path( child ),
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %>
+<header class="fixed">
+    <div class="header_container left">
+        <div class="icon">P</div>
     </div>
-        <% if @board.children.last != child %>
-            <hr class="divider"></hr>
-        <% end %>
-        
-<% end %>
+    <div class="header_container header_title">
+        <h1><%= @board.name %></h1>
+        <%= @board.description %>
+    </div>
+    <div class="header_container right">
+        <a class="icon" href= <%=new_board_path( :parent_id => @board.id )%> >NS</a>
+        <a class="icon" href= <%=edit_board_path( @board )%> >E</a>
+        <a class="icon" method="delete" href= <%=edit_board_path( @board )%> >D</a>
+        <a class="icon" href= <%=boards_path%> >H</a>
+    </div>
+</header>
 
+<div class="content_field">
+    <div class="content_container">
+        <% if @board.children.any? %>
+            <div class="tile wide">
+                <% @board.children.each do |child| %>
+
+                    <h2><%= link_to child.name, board_path(child) %></h2>
+                    <%= child.description %>
+                    <br/>
+                    <%= link_to 'edit', edit_board_path( child ) %>
+                    <%= link_to 'delete', board_path( child ),
+                            method: :delete,
+                            data: { confirm: 'Are you sure?' } %>
+                    <% if child != @board.children.last %>
+                        <hr></hr>
+                    <% end %>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
 </div>
 
-<hr></hr>
-<%= link_to 'view', board_path( @board ) %>
-<%= link_to 'new', new_board_path( :parent_id => @board.id ) %>
-<%= link_to 'edit', edit_board_path( @board ) %>
-<%= link_to 'delete', board_path( @board ),
+<!--<%= link_to 'delete', board_path( @board ),
             method: :delete,
-            data: { confirm: 'Are you sure?' } %>
-<br/>
-<%= link_to 'home', boards_path %>
+            data: { confirm: 'Are you sure?' } %>-->

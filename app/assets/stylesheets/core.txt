@@ -163,13 +163,15 @@ a.tile:hover {
 .grid {
     display: flex;
     flex-direction: row;
+/*     padding: 0px 4px 0px 4px; */
+    background-color: #ff00ff;
 }
 
 .grid_tile {
 /*    display: inline-block;*/
     flex-grow: 1;
     box-sizing: border-box;
-    margin: 4px;
+    margin: 0px 8px 0px -4px;
     padding: 20pt;
     @include shdw1;
 }
