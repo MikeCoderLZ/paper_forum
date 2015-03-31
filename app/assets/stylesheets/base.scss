@@ -7,6 +7,7 @@ $gutter_base:       0.25rem;
 $gutter_section:    0.5rem;
 $content_width:     50rem;
 $tile_pad:          0.5rem;
+$button_pad:        1rem;
 $border_width:      0.0625rem;
 
 @mixin mat_background {
@@ -112,6 +113,19 @@ header > div {
     align-items: center;
     justify-content: center;
     width: 3rem;
+    height: 3rem;
+    margin: 0px $gutter_base;
+}
+
+.button {
+    @include border_box;
+    @include mat_paper;
+    @include shadow1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: $button_pad;
+    padding-right: $button_pad;
     height: 3rem;
     margin: 0px $gutter_base;
 }

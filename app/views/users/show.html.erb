@@ -1,11 +1,26 @@
-<div class="tile wide">
-
-    <h1 class="label"> <%= @user.name %> </h1>
-    
-        <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%=message %></div>
-    <% end %>
-    
-    <%= link_to 'forum', boards_path %>
-
+<header class="fixed">
+    <div class="header_container left">
+        <div class="icon">P</div>
+    </div>
+    <div class="header_container header_title">
+        <h1><%= @user.name %></h1>
+    </div>
+    <div class="header_container right">
+        <% if logged_in? %>
+            <a class="button" method="delete" href= <%=logout_path%> >Log out</a>
+            <a class="button" href= <%=user_path(current_user)%> >Profile</a>
+        <% else %>
+            <a class="button" method="delete" href= <%=login_path%> >Log in</a>
+        <% end %>
+        <a class="button" href= <%=boards_path%> >Home</a>
+    </div>
+</header>
+<div class="content_field">
+    <div class="content_container">
+        <div class="tile wide">            
+            <% flash.each do |message_type, message| %>
+                <div class="alert alert-<%= message_type %>"><%=message %></div>
+            <% end %>
+        </div>
+    </div>
 </div>
