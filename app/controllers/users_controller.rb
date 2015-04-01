@@ -12,6 +12,7 @@ class UsersController < ApplicationController
         @user = User.new( user_params )
         
         if @user.save
+            log_in @user
             flash[:welcome] = "Welcome to the form."
             redirect_to @user
         else

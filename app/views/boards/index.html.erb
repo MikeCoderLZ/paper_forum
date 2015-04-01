@@ -7,6 +7,9 @@
         <%= @board.description %>
     </div>
     <div class="header_container right">
+        <% if logged_in? %>
+            <a class="button" data-method="delete" href= <%=logout_path%> >Log out</a>
+        <% end %>
         <a class="icon" href= <%=new_board_path( :parent_id => @board.id )%> >NS</a>
     </div>
 </header>

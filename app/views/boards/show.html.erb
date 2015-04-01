@@ -9,7 +9,7 @@
     <div class="header_container right">
         <a class="icon" href= <%=new_board_path( :parent_id => @board.id )%> >NS</a>
         <a class="icon" href= <%=edit_board_path( @board )%> >E</a>
-        <a class="icon" method="delete" href= <%=edit_board_path( @board )%> >D</a>
+        <a class="icon" data-method="delete" href= <%=edit_board_path( @board )%> >D</a>
         <a class="icon" href= <%=boards_path%> >H</a>
     </div>
 </header>

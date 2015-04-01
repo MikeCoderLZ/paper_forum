@@ -7,10 +7,10 @@
     </div>
     <div class="header_container right">
         <% if logged_in? %>
-            <a class="button" method="delete" href= <%=logout_path%> >Log out</a>
+            <a class="button" data-method="delete" href= <%=logout_path%> >Log out</a>
             <a class="button" href= <%=user_path(current_user)%> >Profile</a>
         <% else %>
-            <a class="button" method="delete" href= <%=login_path%> >Log in</a>
+            <a class="button" data-method="delete" href= <%=login_path%> >Log in</a>
         <% end %>
         <a class="button" href= <%=boards_path%> >Home</a>
     </div>
