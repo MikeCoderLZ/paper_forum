@@ -5,10 +5,30 @@ require 'rails/test_help'
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
-
+  
   # Add more helper methods to be used by all tests here...
   # taken from the excelent www.railstutorial.org
   def is_logged_in?
       !session[:user_id].nil?
   end
+  
+  def log_in_as(user, options = {})
+      # get the password
+      password      = options[:password]    || 'password'
+      # see if the session is persistent
+      remember_me   = options[:remember_me] || '1'
+      if integration_test?
+          # log in using the HTTP machinery
+          post login_path, session: { email:        user.email,
+                                      password:     password,
+                                      remember_me:  remember_me }
+      else
+          session[:user_id] = user.id
+      end
+  end
+  
+  private
+    def integration_test?
+        defined?(post_via_redirect)
+    end
 end
