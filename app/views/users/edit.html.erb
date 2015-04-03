@@ -1,0 +1,28 @@
+
+
+<div class="tile wide">
+
+    <h1>Update your Information</h1>
+
+    <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages' %>
+        
+        <%= f.label :name, class: "label" %>
+        <br/>
+        <%= f.text_field :name, class: "wide field" %>
+        <br/>
+        <%= f.label :email, class: "label" %>
+        <br/>
+        <%= f.email_field :email, class: "wide field" %>
+        <br/>
+        <%= f.label :password, class: "label" %>
+        <br/>
+        <%= f.password_field :password, class: "wide field" %>
+        <br/>
+        <%= f.label :password_confirmation, class: "label" %>
+        <br/>
+        <%= f.password_field :password_confirmation, class: "wide field" %>
+        <br/>
+        <%= f.submit "Save Changes", class: "btn_blank label" %>
+    <% end %>
+</div>

@@ -3,25 +3,28 @@
         <div class="icon">P</div>
     </div>
     <div class="header_container header_title">
-        <h1><%= @user.name %></h1>
+        <h1><%= @board.name %></h1>
+        <%= @board.description %>
     </div>
     <div class="header_container right">
         <% if logged_in? %>
             <%= link_to "Log Out", logout_path, method: "delete", class: "button" %>
             <%= link_to "Profile", user_path(current_user), class: "button" %>
-            <%= link_to "edit", edit_user_path(current_user), class: "button" %>
-            <%= link_to "users", users_path, class: "button" %>
-        <% else %>
-            <%= link_to "Log In", login_path, class: "button" %>
         <% end %>
         <%= link_to "Home", boards_path, class: "button" %>
     </div>
 </header>
+
 <div class="content_field">
     <div class="content_container">
-        <div class="tile wide">            
-            <% flash.each do |message_type, message| %>
-                <div class="alert alert-<%= message_type %>"><%=message %></div>
+        <div class="tile wide">
+            <% if @users.any? %>
+                <% @users.each do |user| %>
+                    <h2><%= link_to user.name, user_path(user) %></h2>
+                    <% if user != @users.last %>
+                        <hr></hr>
+                    <% end %>
+                <% end %>
             <% end %>
         </div>
     </div>
