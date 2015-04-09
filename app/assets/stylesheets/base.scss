@@ -24,6 +24,15 @@ $border_width:      0.0625rem;
     border:             $border_width solid $paper_edge;
 }
 
+@mixin mat_pale_blue {
+    background-color:   $swatch1;
+    border:             $border_width solid $swatch1_edge;
+}
+
+@mixin shadow0 {
+    box-shadow: none;
+}
+
 @mixin shadow1 {
     box-shadow: 0px 3px 8px 0px rgba( 0, 0, 0, 0.05 ),
                 0px 0px 4px 1px rgba( 0, 0, 0, 0.05 );
@@ -93,6 +102,7 @@ header {
 }
 
 header.fixed {
+    @include mat_pale_blue;
     @include border_box;
     position: absolute;
     top: 0px;
@@ -184,12 +194,15 @@ div.content_field {
     @include mat_paper;
     @include border_box;
     @include tile_element;
+    @include shadow0;
     border-width: 0px;
     display: flex;
     padding: 0px;
     position: relative;
     margin: 0px;
     z-index: 1;
+    -webkit-transition: box-shadow 0.1s ease-out;
+    transition: box-shadow 0.1s ease-out;
     &:hover {
         @include shadow2;
         z-index: 2;
@@ -217,8 +230,7 @@ div.content_field {
 }
 
 h1.swatch_block {
+    @include mat_pale_blue;
     justify-content: center;
     width: 20%;
-    background-color: $swatch1;
-    border-color: $swatch1_edge;
     }

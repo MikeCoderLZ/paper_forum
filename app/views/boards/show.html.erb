@@ -1,4 +1,4 @@
-<header class="fixed">
+<!--<header class="fixed">
     <div class="header_container left">
         <div class="icon">P</div>
     </div>
@@ -12,24 +12,40 @@
         <a class="icon" data-method="delete" href= <%=edit_board_path( @board )%> >D</a>
         <a class="icon" href= <%=boards_path%> >H</a>
     </div>
-</header>
+</header>-->
+
+<% content_for :header_left  do %>
+    <div class="icon">P</div>
+<% end %>
+
+<% content_for :header_title  do %>
+    <h1><%= @board.name %></h1>
+        <%= @board.description %>
+<% end %>
+
+<% content_for :header_right  do %>
+    <a class="icon" href= <%=new_board_path( :parent_id => @board.id )%> >NS</a>
+        <a class="icon" href= <%=edit_board_path( @board )%> >E</a>
+        <a class="icon" data-method="delete" href= <%=edit_board_path( @board )%> >D</a>
+        <a class="icon" href= <%=boards_path%> >H</a>
+<% end %>
+
+<%= render 'layouts/header' %>
+
 
 <div class="content_field">
     <div class="content_container">
         <% if @board.children.any? %>
-            <div class="tile wide">
+            <div class="page_tile wide">
                 <% @board.children.each do |child| %>
-
-                    <h2><%= link_to child.name, board_path(child) %></h2>
-                    <%= child.description %>
-                    <br/>
-                    <%= link_to 'edit', edit_board_path( child ) %>
-                    <%= link_to 'delete', board_path( child ),
-                            method: :delete,
-                            data: { confirm: 'Are you sure?' } %>
-                    <% if child != @board.children.last %>
-                        <hr></hr>
-                    <% end %>
+                    <a class="list_tile wide" href=<%=board_path(child)%>>
+                        <h1 class="swatch_block label"><%= child.name %></h1>
+                        <div class="swatch_block"><%= child.description %></div>
+                        <!--<%= link_to 'edit', edit_board_path( child ), class: "button" %>
+                        <%= link_to 'delete', board_path( child ),
+                                method: :delete,
+                                data: { confirm: 'Are you sure?' } %>-->
+                    </a>
                 <% end %>
             </div>
         <% end %>

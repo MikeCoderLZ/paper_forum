@@ -1,0 +1,12 @@
+<div class="content_field">
+    <div class="content_container">
+        <div class="page_tile wide">
+            <% @board.children.each do |child| %>
+                <a class="list_tile wide" href=<%=board_path(child)%>>
+                    <h1 class="swatch_block label"><%= child.name %></h1>
+                    <div class="swatch_block"><%= child.description %></div>
+                </a>
+            <% end %>
+        </div>
+    </div>
+</div>
