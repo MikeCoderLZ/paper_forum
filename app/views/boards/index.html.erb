@@ -23,8 +23,8 @@
             <div class="page_tile wide">
                 <% @board.children.each do |child| %>
                     <a class="list_tile wide" href=<%=board_path(child)%>>
-                        <h1 class="swatch_block label"><%= child.name %></h1>
-                        <div class="swatch_block"><%= child.description %></div>
+                        <h1 class="swatch_block label no_border_right"><%= child.name %></h1>
+                        <div class="swatch_block no_border_left"><%= child.description %></div>
                         <!--<%= link_to 'edit', edit_board_path( child ), class: "button" %>
                         <%= link_to 'delete', board_path( child ),
                                 method: :delete,
