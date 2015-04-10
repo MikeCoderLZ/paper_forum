@@ -1,21 +1,7 @@
-<!--<header class="fixed">
-    <div class="header_container left">
-        <div class="icon">P</div>
-    </div>
-    <div class="header_container header_title">
-        <h1><%= @board.name %></h1>
-        <%= @board.description %>
-    </div>
-    <div class="header_container right">
-        <a class="icon" href= <%=new_board_path( :parent_id => @board.id )%> >NS</a>
-        <a class="icon" href= <%=edit_board_path( @board )%> >E</a>
-        <a class="icon" data-method="delete" href= <%=edit_board_path( @board )%> >D</a>
-        <a class="icon" href= <%=boards_path%> >H</a>
-    </div>
-</header>-->
-
 <% content_for :header_left  do %>
-    <div class="icon">P</div>
+    <% if logged_in? %>
+        <%= link_to "Profile", user_path(current_user), class: "button" %>
+    <% end %>
 <% end %>
 
 <% content_for :header_title  do %>
@@ -24,10 +10,17 @@
 <% end %>
 
 <% content_for :header_right  do %>
-    <a class="icon" href= <%=new_board_path( :parent_id => @board.id )%> >NS</a>
-        <a class="icon" href= <%=edit_board_path( @board )%> >E</a>
-        <a class="icon" data-method="delete" href= <%=edit_board_path( @board )%> >D</a>
-        <a class="icon" href= <%=boards_path%> >H</a>
+    <% if logged_in? %>
+        <a class="button" data-method="delete" href= <%=logout_path%> >Log Out</a>
+    <% end %>
+    
+    <%= link_to "NS", new_board_path( :parent_id => @board.id ), class: "icon" %>
+    <%= link_to "E",  edit_board_path( @board ), class: "icon" %>
+    <%= link_to "H", boards_path, class: "icon" %>
+    <!--<a class="icon" href= <%=new_board_path( :parent_id => @board.id )%> >NS</a>
+    <a class="icon" href= <%=edit_board_path( @board )%> >E</a>
+    <a class="icon" data-method="delete" href= <%=edit_board_path( @board )%> >D</a>
+    <a class="icon" href= <%=boards_path%> >H</a>-->
 <% end %>
 
 <%= render 'layouts/header' %>

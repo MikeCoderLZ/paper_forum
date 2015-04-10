@@ -1,5 +1,7 @@
 <% content_for :header_left  do %>
-    <div class="icon">P</div>
+    <% if logged_in? %>
+        <%= link_to "Profile", user_path(current_user), class: "button" %>
+    <% end %>
 <% end %>
 
 <% content_for :header_title  do %>
@@ -9,9 +11,9 @@
 
 <% content_for :header_right  do %>
     <% if logged_in? %>
-            <a class="button" data-method="delete" href= <%=logout_path%> >Log out</a>
-        <% end %>
-        <a class="icon" href= <%=new_board_path( :parent_id => @board.id )%> >NS</a>
+        <a class="button" data-method="delete" href= <%=logout_path%> >Log out</a>
+    <% end %>
+    <a class="icon" href= <%=new_board_path( :parent_id => @board.id )%> >NS</a>
 <% end %>
 <%= render 'layouts/header' %>
 
