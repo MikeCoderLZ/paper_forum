@@ -15,7 +15,10 @@
    version="1.1"
    inkscape:version="0.48.4 r9939"
    sodipodi:docname="screen960.svg"
-   enable-background="new">
+   enable-background="new"
+   inkscape:export-filename="/home/mike/Development/Ruby/rails/forum/schematics/screen960.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -23,11 +26,11 @@
      pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0"
+     inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="322.54957"
-     inkscape:cy="492.13199"
+     inkscape:cx="428.93724"
+     inkscape:cy="372.13199"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -2069,7 +2072,7 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="sidebars"
-     style="display:none">
+     style="display:inline">
     <rect
        transform="translate(0,-332.36217)"
        style="fill:#000000;fill-opacity:0.1254902;fill-rule:nonzero;stroke:#000000;stroke-width:0.99657404;stroke-opacity:0.25098039;display:inline"

@@ -18,13 +18,16 @@
 <%= render 'layouts/header' %>
 
 <div class="content_field">
+    <div class="sidebar_container left">
+        <div class="sidebar left"></div>
+    </div>
     <div class="content_container">
         <% if @board.children.any? %>
-            <div class="page_tile wide">
+            <div class="tile no_border">
                 <% @board.children.each do |child| %>
-                    <a class="list_tile wide" href=<%=board_path(child)%>>
-                        <h1 class="swatch_block label no_border_right"><%= child.name %></h1>
-                        <div class="swatch_block no_border_left"><%= child.description %></div>
+                    <a class="list_item" href=<%=board_path(child)%>>
+                        <h3 class="content_division"><%= child.name %></h3>
+                        <div class="content_division"><%= child.description %></div>
                         <!--<%= link_to 'edit', edit_board_path( child ), class: "button" %>
                         <%= link_to 'delete', board_path( child ),
                                 method: :delete,
@@ -33,5 +36,8 @@
                 <% end %>
             </div>
         <% end %>
+    </div>
+    <div class="sidebar_container right">
+        <div class="sidebar right"></div>
     </div>
 </div>

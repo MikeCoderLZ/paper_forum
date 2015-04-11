@@ -1,25 +1,31 @@
-<header class="fixed">
-    <div class="header_container left">
-        <div class="icon">P</div>
-    </div>
-    <div class="header_container header_title">
-        <h1>Welcome to the Forum</h1>
-    </div>
-    <div class="header_container right">
-        <div class="icon">D</div>
-        <div class="icon">H</div>
-    </div>
-</header>
-<hr></hr>
+<% content_for :header_left  do %>
+    <% if logged_in? %>
+        <%= link_to "Profile", user_path(current_user), class: "button" %>
+    <% end %>
+<% end %>
+
+<% content_for :header_title  do %>
+    <h1>Welcome to the Forum</h1>
+<% end %>
+
+<% content_for :header_right  do %>
+<% end %>
+<%= render 'layouts/header' %>
 
 <div class="content_field">
+    <div class="sidebar_container left">
+        <div class="sidebar left"></div>
+    </div>
     <div class="content_container">
-        <div class="tile wide" id="about">
+        <div class="tile content" id="about">
             About the forum
         </div>
-        <a class="tile wide" id="signup" href=<%=login_path%> >
+        <a class="tile content" id="signup" href=<%=login_path%> >
             sign in
         </a>
+    </div>
+    <div class="sidebar_container right">
+        <div class="sidebar right"></div>
     </div>
 </div>
 

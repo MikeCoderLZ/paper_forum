@@ -8,11 +8,14 @@ $swatch1_highlight: rgb( 90%, 90%, 100% );
 $swatch2:           rgb( 80%, 20%, 5% );
 $swatch2_edge:      rgb( 75%, 15%, 2.5% );
 $header_height:     5rem;
-$gutter_base:       0.25rem;
-$gutter_section:    0.5rem;
-$content_width:     66rem;
+$quarter_gutter:    0.125rem;
+$half_gutter:       0.25rem;
+$full_gutter:       0.5rem;
+$content_width:     60%;
+$sidebar_width:     20%;
 $tile_pad:          0.5rem;
 $button_pad:        1rem;
+$content_pad:       0.75rem;
 $border_width:      0.0625rem;
 
 @mixin mat_background {
@@ -61,6 +64,15 @@ $border_width:      0.0625rem;
                 0px 0px 8px 4px rgba( 0, 0, 0, 0.05 );
 }
 
+@mixin shadow_hover {
+    -webkit-transition: box-shadow 0.1s ease-out;
+    transition: box-shadow 0.1s ease-out;
+    &:hover {
+        @include shadow2;
+        z-index: 2;
+    }
+}
+
 @mixin border-box {
     -webkit-box-sizing: border-box;
     -moz-box-sizing:    border-box;
@@ -71,7 +83,11 @@ $border_width:      0.0625rem;
     display: block;
     min-height: 3rem;
     padding: 0.5rem;
-    margin: $gutter_base;
+    margin: $half_gutter;
+}
+
+@mixin content_element {
+    padding: $content_pad;
 }
 
 html {
@@ -96,7 +112,7 @@ hr {
     @include        border-box;
     padding:        0px;
     width:          calc( 100% + 2*$tile_pad);
-    margin:         $gutter_base (-$tile_pad) $gutter_base (-$tile_pad);
+    margin:         $half_gutter (-$tile_pad) $half_gutter (-$tile_pad);
     border:         $border_width solid $paper_edge;
     border-bottom:  0px;
 }
@@ -163,7 +179,7 @@ header > div {
     justify-content: center;
     width: 3rem;
     height: 3rem;
-    margin: 0px $gutter_base;
+    margin: 0px $half_gutter;
     border-radius: 50%;
     font-size: 2rem;
     text-decoration: none;
@@ -184,29 +200,72 @@ header > div {
     padding-left: $button_pad;
     padding-right: $button_pad;
     height: 3rem;
-    margin: 0px $gutter_base;
+    margin: 0px $half_gutter;
 }
 
 div.content_field {
     display: flex;
     justify-content: center;
-/*     margin: ($header_height + $gutter_section) 0rem 0rem 0rem; */
+    background-color: #0000ff;
     width: 100%;
 }
 
-.content_container {
+.sidebar_container {
+    @include border-box;
     display: flex;
-    flex-flow: column wrap;
+    justify-content: center;
+    background-color: #ff0000;
+    margin: 0px;
+    width: $sidebar_width;
+    &.left {
+        padding: 0px $quarter_gutter 0px 0px;
+    }
+    &.right {
+        padding: 0px 0px 0px $quarter_gutter;
+    }
+}
+
+.sidebar {
+    @include border-box;
+    background-color: #00ff00;
+    flex-grow: 1;
+    &.left {
+        margin: 0px $quarter_gutter 0px 0px;
+    }
+    &.right {
+        margin: 0px 0px 0px $quarter_gutter;
+    }
+}
+
+.content_container {
+    @include border-box;
+    display: flex;
+    flex-flow: column;
     width: $content_width;
-/*     margin: 0% 0% 0% -0.5rem; */
-/*     background-color: #888800; */
+    background-color: #00ffff;
+    padding: $half_gutter $half_gutter $half_gutter 0px;
+    margin: 0px;
 }
 
 .tile {
     @include mat_paper;
-    @include border_box;
+    @include border-box;
     @include shadow1;
-    @include tile_element;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+/*     background-color: #008800; */
+    margin: $half_gutter 0px $half_gutter $half_gutter;
+    padding: 0px;
+    z-index: 0;
+}
+
+a.tile {
+    @include shadow_hover; 
+}
+
+.no_border {
+    border-width: 0px;
 }
 
 .page_tile {
@@ -214,10 +273,40 @@ div.content_field {
     @include border_box;
     @include shadow1;
     @include tile_element;
+    background-color: #008800;
     border-width: 0px;
-    padding: 0.0px;
+    padding: 0px;
     z-index: 0;
 }
+
+.list_item {
+    @include border-box;
+    @include shadow0;
+    @include shadow_hover;
+    display: flex;
+    position: relative;
+    z-index: 1;
+}
+
+.content_division {
+    @include mat_paper;
+    @include border-box;
+    @include content_element;
+    display: flex;
+    justify-content: left;
+    margin: 0px;
+    width: 75%;
+}
+
+h3.content_division {
+    @include mat_pale_blue;
+    justify-content: center;
+    width: 25%;
+    font: {
+        size: 100%;
+    }
+}
+
 
 .list_tile {
     @include mat_paper;
@@ -239,18 +328,19 @@ div.content_field {
 }
 
 .wide {
-    max-width: $content_width - 2*$gutter_base;
+    margin: $half_gutter 0px $half_gutter $half_gutter;
 }
 
 .swatch_block {
     @include mat_paper;
     @include border-box;
+    @include content_element;
     display: flex;
     width: 80%;
     align-items: center;
     justify-content: left;
-    padding-left: $button_pad;
-    padding-right: $button_pad;
+    /*padding-left: $button_pad;
+    padding-right: $button_pad;*/
     margin: 0px;
     font: {
         size: 100%;
@@ -264,3 +354,6 @@ h1.swatch_block {
     width: 20%;
     }
 
+.content {
+    @include content_element;
+}
