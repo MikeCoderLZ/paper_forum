@@ -103,7 +103,6 @@ hr {
 
 header {
     @include mat_paper;
-    @include shadow2;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -116,10 +115,18 @@ header {
 
 header.fixed {
     @include mat_pale_blue;
+    @include shadow2;
     @include border_box;
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
+}
+
+header.fixed_dummy {
+    @include border_box;
+    height: $header_height;
+    width: 100%;
+    margin: 0px;
 }
 
 header > div {
@@ -183,7 +190,7 @@ header > div {
 div.content_field {
     display: flex;
     justify-content: center;
-    margin: ($header_height + $gutter_section) 0rem 0rem 0rem;
+/*     margin: ($header_height + $gutter_section) 0rem 0rem 0rem; */
     width: 100%;
 }
 

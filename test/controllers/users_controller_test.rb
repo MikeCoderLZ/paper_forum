@@ -43,4 +43,19 @@ class UsersControllerTest < ActionController::TestCase
         assert_redirected_to root_url
     end
     
+    test "logged out users deleting a user should get redirected" do
+        assert_no_difference 'User.count' do
+            delete :destroy, id: @user
+        end
+        assert_redirected_to login_url
+    end
+    
+    test "non-admins should also be redirected when deleting" do
+        log_in_as( @other_user )
+        assert_no_difference 'User.count' do
+            delete :destroy, id: @user
+        end
+        assert_redirected_to root_url
+    end
+    
 end

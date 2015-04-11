@@ -1,30 +1,34 @@
-<header class="fixed">
-    <div class="header_container left">
-        <div class="icon">P</div>
-    </div>
-    <div class="header_container header_title">
-        <h1>Users</h1>
-    </div>
-    <div class="header_container right">
-        <% if logged_in? %>
-            <%= link_to "Log Out", logout_path, method: "delete", class: "button" %>
-            <%= link_to "Profile", user_path(current_user), class: "button" %>
-        <% end %>
-        <%= link_to "Home", boards_path, class: "button" %>
-    </div>
-</header>
+<% content_for :header_left  do %>
+    <% if logged_in? %>
+        <%= link_to "Profile", user_path(current_user), class: "button" %>
+    <% end %>
+<% end %>
+
+<% content_for :header_title  do %>
+    <h1>Users</h1>
+<% end %>
+
+<% content_for :header_right  do %>
+    <% if logged_in? %>
+        <%= link_to "Log Out", logout_path, method: "delete", class: "button" %>
+        <%= link_to "Profile", user_path(current_user), class: "button" %>
+    <% end %>
+    <%= link_to "Home", boards_path, class: "button" %>
+<% end %>
+<%= render 'layouts/header' %>
+
+<%= will_paginate %>
 
 <div class="content_field">
     <div class="content_container">
         <div class="tile wide">
             <% if @users.any? %>
                 <% @users.each do |user| %>
-                    <h2><%= link_to user.name, user_path(user) %></h2>
-                    <% if user != @users.last %>
-                        <hr></hr>
-                    <% end %>
+                    <%= render user %>
                 <% end %>
             <% end %>
         </div>
     </div>
 </div>
+
+<%= will_paginate %>

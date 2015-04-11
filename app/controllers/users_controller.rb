@@ -1,15 +1,16 @@
 class UsersController < ApplicationController
     # Before edit and update, make sure a user in logged in
-    before_action :logged_in_user, only: [:index, :edit, :update]
+    before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
     # ^ method ^     |              ^ options hash, with a hash value
     #                ^ symbol of target method
     # Ensure that the correct user is logged in on edit and update
     before_action :correct_user,   only: [:edit, :update]
+    before_action :admin_user, only: :destroy
     
     # Serves up the index page, providing a variable with an array
     # of all users in the database
     def index
-        @users = User.all
+        @users = User.paginate( page: params[:page])
     end
     # Serves up the individual user page, providing a variable with the
     # user to extract information from
@@ -63,6 +64,12 @@ class UsersController < ApplicationController
         end
     end
     
+    def destroy
+        User.find(params[:id]).destroy
+        flash[:success] = "User deleted"
+        redirect_to users_url
+    end
+    
     private
         # This method deals with strong parameters.
         def user_params
@@ -90,5 +97,9 @@ class UsersController < ApplicationController
             # actions controlled by another user, so we go to the root
             # ...for now
             redirect_to(root_url) unless  current_user?(@user)
+        end
+        
+        def admin_user
+            redirect_to(root_url) unless current_user && current_user.admin?
         end
 end

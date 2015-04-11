@@ -6,12 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# Clear out the Board table
-
-Board.all.each do |b| 
-    b.destroy
-end
-
 # I may need this later
 # ALTER TABLE boards AUTO_INCREMENT = 1
 
@@ -21,10 +15,11 @@ Board.create( name: "Main",
               parent: nil,
               id: 1)
 
-User.create!(name:  "Example user",
-             email: "example@railstutorial.org",
-             password:              "foobar",
-             password_confirmation: "foobar")
+User.create!(name:  "Mike",
+             email: "mikeo.lz17@gmail.com",
+             password:              "password",
+             password_confirmation: "password",
+             admin: true )
 
 99.times do |n|
     name = Faker::Name.name
