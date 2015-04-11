@@ -1,28 +1,41 @@
-<header class="fixed">
-    <div class="header_container left">
-        <div class="icon">P</div>
-    </div>
-    <div class="header_container header_title">
-        <h1><%= @user.name %></h1>
-    </div>
-    <div class="header_container right">
-        <% if logged_in? %>
-            <%= link_to "Log Out", logout_path, method: "delete", class: "button" %>
-            <%= link_to "Profile", user_path(current_user), class: "button" %>
-            <%= link_to "edit", edit_user_path(current_user), class: "button" %>
-            <%= link_to "users", users_path, class: "button" %>
-        <% else %>
-            <%= link_to "Log In", login_path, class: "button" %>
-        <% end %>
-        <%= link_to "Home", boards_path, class: "button" %>
-    </div>
-</header>
+<% content_for :header_left  do %>
+    <% if logged_in? %>
+        <%= link_to "Profile", user_path(current_user), class: "button" %>
+    <% end %>
+<% end %>
+
+<% content_for :header_title  do %>
+    <h1><%= @user.name %></h1>
+<% end %>
+
+<% content_for :header_right  do %>
+    <% if logged_in? %>
+        <%= link_to "Log Out", logout_path, method: "delete", class: "button" %>
+        <%= link_to "Profile", user_path(current_user), class: "button" %>
+        <%= link_to "edit", edit_user_path(current_user), class: "button" %>
+        <%= link_to "users", users_path, class: "button" %>
+    <% else %>
+        <%= link_to "Log In", login_path, class: "button" %>
+    <% end %>
+    <%= link_to "Home", boards_path, class: "button" %>
+<% end %>
+<%= render 'layouts/header' %>
+
+
 <div class="content_field">
+    <div class="sidebar_container left">
+        <div class="sidebar left"></div>
+    </div>
     <div class="content_container">
-        <div class="tile wide">            
-            <% flash.each do |message_type, message| %>
-                <div class="alert alert-<%= message_type %>"><%=message %></div>
-            <% end %>
-        </div>
+        <% if flash.any? %>
+            <div class="tile">            
+                <% flash.each do |message_type, message| %>
+                    <div class="alert alert-<%= message_type %>"><%=message %></div>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+    <div class="sidebar_container right">
+        <div class="sidebar right"></div>
     </div>
 </div>

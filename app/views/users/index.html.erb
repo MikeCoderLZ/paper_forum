@@ -17,18 +17,31 @@
 <% end %>
 <%= render 'layouts/header' %>
 
-<%= will_paginate %>
+
 
 <div class="content_field">
+    <div class="sidebar_container left">
+        <div class="sidebar left"></div>
+    </div>
     <div class="content_container">
-        <div class="tile wide">
+        <div class="tile content">
+            <%= will_paginate %>
+        </div>
+        <div class="tile no_border">
             <% if @users.any? %>
-                <% @users.each do |user| %>
-                    <%= render user %>
+                <% @users.each do |user| %>                    
+                    <a class="list_item" href=<%=user_path(user)%>>
+                        <h3 class="content_division"><%= user.name %></h3>
+                        <div class="content_division"><%= user.email %></div>
+                    </a>                    
                 <% end %>
             <% end %>
         </div>
+        <div class="tile content">
+            <%= will_paginate %>
+        </div>
+    </div>
+    <div class="sidebar_container right">
+        <div class="sidebar right"></div>
     </div>
 </div>
-
-<%= will_paginate %>
