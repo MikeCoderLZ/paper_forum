@@ -1,4 +1,4 @@
-$base_font_color:   rgb( 42, 32, 79 );
+$base_font_color:   rgb( 63, 16, 8 );
 $paper_base:        rgb( 250, 249, 244 );
 $paper_edge:        rgb( 244, 240, 231 );
 $background:        rgb( 94, 106, 46 );
@@ -48,6 +48,7 @@ $border_width:      0.0625rem;
 @mixin mat_citrine {
     background-color:   $swatch2;
     border:             $border_width solid $swatch2_edge;
+    box-shadow:         inset 0px 0px $content_pad 0px $swatch2_edge;
     &.no_border_right {
         border-right-width: 0px;
     }
@@ -310,7 +311,8 @@ h3.content_division {
     justify-content: center;
     align-items: center;
     width: 25%;
-    color: $paper_base;
+    text-shadow: $paper_base 0px 0.05rem 0.2rem;
+/*     color: $paper_base; */
     font: {
         size: 100%;
         weight: bold;

@@ -29,13 +29,11 @@ class UsersController < ApplicationController
         @user = User.new( user_params )
         # If the user in play manages to save...
         if @user.save
-            # Log the use in using the SessionHelper method
-            log_in @user
+            UserMailer.account_activation(@user).deliver_now
             # Add a message to the flash hash
-            flash[:welcome] = "Welcome to the form."
+            flash[:info] = "Please check your email to activate your account"
           # ^ hash  ^ key      ^ message
-            # Now that we are saved, go to the show page for a user
-            redirect_to @user
+            redirect_to root_url
         else
             # OTHERWISE, loop back to the new page.
             # The local @user object has not changed, and the save method
