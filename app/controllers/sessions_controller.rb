@@ -15,11 +15,18 @@ class SessionsController < ApplicationController
       # in action: if we found a user and they can be authenticated via the
       # provided credentials, THEN we can continue with the log in
       if user && user.authenticate(params[:session][:password])
-          # from the SessionsHelper
-          log_in user
-          # If the user clicked the "remember me" checkbox, then...do that?
-          params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-          redirect_back_or user
+          if user.activated?
+            # from the SessionsHelper
+            log_in user
+            # If the user clicked the "remember me" checkbox, then...do that?
+            params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+            redirect_back_or user
+          else
+              message = "Account not activated. "
+              message += "Check your email for the activation link."
+              flash[:warning] = message
+              redirect_to root_url
+          end
       # stuff
       else
           # Elsewise, add an error flash to the hash

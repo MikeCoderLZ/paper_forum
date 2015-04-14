@@ -29,7 +29,7 @@ class UsersController < ApplicationController
         @user = User.new( user_params )
         # If the user in play manages to save...
         if @user.save
-            UserMailer.account_activation(@user).deliver_now
+            @user.send_activation_email
             # Add a message to the flash hash
             flash[:info] = "Please check your email to activate your account"
           # ^ hash  ^ key      ^ message

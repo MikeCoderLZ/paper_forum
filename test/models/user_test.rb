@@ -70,7 +70,7 @@ class UserTest < ActiveSupport::TestCase
     end
     
     test "authenticated? should return false for a user with nil digest" do
-        assert_not @user1.authenticated?('')
+        assert_not @user1.authenticated?(:remember, '')
     end
     
 #     test "name validation should reject limited strings as valid" do

@@ -51,18 +51,29 @@ class User < ActiveRecord::Base
         update_attribute( :remember_digest, User.digest( remember_token ) )
     end
     
-    # Returns true of the given token matches the digest.
-    def authenticated?( remember_token )
+    # Returns true of the given token matches the given attribute digest.
+    def authenticated?( attribute, token )
         # In this context, "password" is taken to be a generalization;
         # we are using the authentication code of BCrypt to authenticate
         # something that isn't STRICTLY speaking 'the' password.
-        return false if remember_digest.nil?
-        BCrypt::Password.new(remember_digest).is_password?(remember_token)
+        digest = send("#{attribute}_digest")
+        # ^ Ruby metaprogramming hoodoo ^
+        return false if digest.nil?
+        BCrypt::Password.new(digest).is_password?(token)
     end
     
     def forget
         # clear the remember token
         update_attribute(:remember_digest, nil)
+    end
+    
+    def activate
+        update_attribute(:activated, true)
+        update_attribute(:activated_at, Time.zone.now)
+    end
+    
+    def send_activation_email
+        UserMailer.account_activation(self).deliver_now
     end
     
     private
