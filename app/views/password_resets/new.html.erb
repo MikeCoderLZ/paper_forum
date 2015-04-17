@@ -1,0 +1,16 @@
+<div class="tile wide">
+
+<h1 class="label">Forgot Password</h1>
+
+<%= form_for(:password_reste, url: password_resets_path) do |f| %>
+
+     <%= render 'shared/error_messages' %> 
+
+    <%= f.label :email %>
+    <%= f.email_field :email, class: 'field' %>
+    
+    <%= f.submit "submit", class: "btn_blank" %>
+
+<% end %>
+
+</div>
