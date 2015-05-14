@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150415215635) do
+ActiveRecord::Schema.define(version: 20150417210951) do
 
   create_table "boards", force: :cascade do |t|
     t.text     "name"
@@ -22,6 +22,20 @@ ActiveRecord::Schema.define(version: 20150415215635) do
   end
 
   add_index "boards", ["parent_id"], name: "index_boards_on_parent_id"
+
+  create_table "topic_posts", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "board_id"
+    t.integer  "root_post_id"
+    t.boolean  "is_topic_post"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "topic_posts", ["board_id"], name: "index_topic_posts_on_board_id"
+  add_index "topic_posts", ["root_post_id"], name: "index_topic_posts_on_root_post_id"
+  add_index "topic_posts", ["user_id"], name: "index_topic_posts_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
