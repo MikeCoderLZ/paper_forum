@@ -1,6 +1,7 @@
 <% content_for :header_left  do %>
     <% if logged_in? %>
         <%= link_to "Profile", user_path(current_user), class: "button" %>
+        <a class="button" data-method="delete" href= <%=logout_path%> >Log Out</a>
     <% end %>
 <% end %>
 
@@ -10,9 +11,6 @@
 <% end %>
 
 <% content_for :header_right  do %>
-    <% if logged_in? %>
-        <a class="button" data-method="delete" href= <%=logout_path%> >Log Out</a>
-    <% end %>
     
     <%= link_to "NS", new_board_path( :parent_id => @board.id ), class: "icon" %>
     <%= link_to "E",  edit_board_path( @board ), class: "icon" %>

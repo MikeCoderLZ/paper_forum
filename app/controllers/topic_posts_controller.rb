@@ -1,0 +1,5 @@
+class TopicPostsController < ApplicationController
+    
+    
+    
+end

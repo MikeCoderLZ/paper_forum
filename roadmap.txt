@@ -10,3 +10,40 @@ it goes nowhere.
 --------------
 
 User needs to validate it's current attributes.
+
+--------------
+
+TopicPosts that are the beginning of a discussion contain themselves as their own
+parent. This is to facilitate display: you can list search for all posts that have
+the same parent post and display those, which automatically includes the root post.
+TopicPosts also have a boolean indicating if the post in question is the root of a
+new topic of discussion. This is to facilitate indexed views of topics.
+
+What needs to happen for a user to START a topic:
+    *   User needs to be logged in
+    *   User needs to have permission to start topics (this currently is not a thing)
+
+Then this has to happen:
+    *   We create a new TopicPost
+    *   It's containing board must be the board from which we navigated
+    *   It's parent TopicPost is itself. This may seem odd, but it allows a Topic to be
+        displayed by selecting all posts with this post as it's parent. It's like 0-indexed
+        arrays.
+    *   Provide a form for this post, with that data already filled out
+
+Where can you create a topic from:
+    *   Any board page. It is part of the discussion icons group
+
+What needs to happen when a User comments on a topic:
+    *   User must be logged in
+    *   User must have permission to discuss in that location (not a thing yet)
+    
+What happens when you comment:
+    *   A new TopicPost is created with the root post being the root of this discussion
+        and the board being the same as the root post.
+        *   Probably can safely copy the root and the board of the last post displayed,
+            right?
+    *   Provide text field for comment body
+
+When can you create a comment:
+    *   From any discussion page.
