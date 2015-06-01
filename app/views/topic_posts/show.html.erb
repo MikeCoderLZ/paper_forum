@@ -1,0 +1,41 @@
+<% content_for :header_left  do %>
+    <% if logged_in? %>
+        <%= link_to "Profile", user_path(current_user), class: "button" %>
+        <a class="button" data-method="delete" href= <%=logout_path%> >Log Out</a>
+    <% end %>
+<% end %>
+
+<% content_for :header_title  do %>
+    <h1>A POST</h1>
+<% end %>
+
+<% content_for :header_right  do %>
+    Uh oh, how is this gonna work?
+    <%= link_to "C", new_topic_post_path( :it_topic_post => true ), class: "icon" %>
+    <%= link_to "E",  edit_topic_post_path( @topic_post ), class: "icon" %>
+    <%= link_to "H", boards_path, class: "icon" %>
+    <!--<a class="icon" href= <%=new_board_path( :parent_id => @board.id )%> >NS</a>
+    <a class="icon" href= <%=edit_board_path( @board )%> >E</a>
+    <a class="icon" data-method="delete" href= <%=edit_board_path( @board )%> >D</a>
+    <a class="icon" href= <%=boards_path%> >H</a>-->
+<% end %>
+
+<%= render 'layouts/header' %>
+
+
+<div class="content_field">
+    <div class="sidebar_container left">
+        <div class="sidebar left"></div>
+    </div>
+    <div class="content_container">
+        <div class="tile no_border">
+            <div class="list_item">
+                <h3 class="content_division"><%= @topic_post.user %></h3>
+                <div class="content_division"><%= @topic_post.content %></div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar_container right">
+        <div class="sidebar right"></div>
+    </div>
+</div>

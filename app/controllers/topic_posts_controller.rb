@@ -1,16 +1,16 @@
 class TopicPostsController < ApplicationController
     
-    def index
-        # I'm not sure about this; indexing posts is a little weird.
-        # I suppose we should select only root posts, because that will
-        # implicitly include all posts
-        @topic_post = TopicPost.all
-    end
+#     def index
+#         # I'm not sure about this; indexing posts on their own is a little weird.
+#         # I suppose we should select only root posts, because that will
+#         # implicitly include all posts, but really posts are indexed on the boards page
+#         @topic_post = TopicPost.all
+#     end
     
     def show
         # We need pagination logic here; a post is nothing without its context
         # Hopefully the pagination gem we added can help.
-        @topic_post = TopicPost.find(params[:ed])
+        @topic_post = TopicPost.find(params[:id])
     end
     
     def new
@@ -51,7 +51,7 @@ class TopicPostsController < ApplicationController
     
     private
         def topic_post_params
-            params.require(:content, :user, :board, :root_post, :is_topic_post)
+            params.require(:content, :user, :board, :is_topic_post).permit(:root_post)
         end
     
 end

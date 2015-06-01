@@ -1,0 +1,44 @@
+<% content_for :header_left  do %>
+    <% if logged_in? %>
+        <%= link_to "Profile", user_path(current_user), class: "button" %>
+        <a class="button" data-method="delete" href= <%=logout_path%> >Log out</a>
+    <% end %>
+<% end %>
+
+<% content_for :header_title  do %>
+    <h1><%= @board.name %></h1>
+        <%= @board.description %>
+<% end %>
+
+<% content_for :header_right  do %>
+    <% if logged_in? %>
+        <a class="icon" href= "http://www.google.com" >NT</a>
+    <% end %>
+    <a class="icon" href= <%=new_board_path( :parent_id => @board.id )%> >NS</a>
+<% end %>
+<%= render 'layouts/header' %>
+
+<div class="content_field">
+    <div class="sidebar_container left">
+        <div class="sidebar left"></div>
+    </div>
+    <div class="content_container">
+        <% if @board.children.any? %>
+            <div class="tile no_border">
+                <% @board.children.each do |child| %>
+                    <a class="list_item" href=<%=board_path(child)%>>
+                        <h3 class="content_division"><%= child.name %></h3>
+                        <div class="content_division"><%= child.description %></div>
+                        <!--<%= link_to 'edit', edit_board_path( child ), class: "button" %>
+                        <%= link_to 'delete', board_path( child ),
+                                method: :delete,
+                                data: { confirm: 'Are you sure?' } %>-->
+                    </a>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+    <div class="sidebar_container right">
+        <div class="sidebar right"></div>
+    </div>
+</div>
