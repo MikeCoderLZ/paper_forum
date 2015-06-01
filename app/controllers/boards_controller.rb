@@ -9,6 +9,7 @@ class BoardsController < ApplicationController
     # Shows the given board, it's subboards, etc.
     def show
         @board = Board.find(params[:id])
+        @topics = @board.topics.all
     end
     # Creates a new board under the given parent board.
     # the parent board's ID is given in a hidden field

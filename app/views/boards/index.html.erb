@@ -37,6 +37,18 @@
                 <% end %>
             </div>
         <% end %>
+        
+        <% if @topics.any? %>
+            <div class="tile no_border">
+                <% @topics.each do |topic| %>
+                    <a class="list_item" href=<%=topic_post_path(topic)%>>
+                        <h3 class="content_division">A POST</h3>
+                        <div class="content_division"><%= topic.content %></div>
+                    </a>
+                <% end %>
+            </div>
+        <% end %>
+        
     </div>
     <div class="sidebar_container right">
         <div class="sidebar right"></div>

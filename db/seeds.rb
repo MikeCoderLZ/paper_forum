@@ -23,6 +23,15 @@ User.create!(name:  "Mike",
              activated: true,
              activated_at: Time.zone.now )
 
+TopicPost.create!(user: User.all.first,
+                  board: Board.all.first,
+                  content: "Stuff! Things!",
+                  is_topic_post: true )
+
+# hacky
+
+TopicPost.first.update({root_post: TopicPost.first})
+
 99.times do |n|
     name = Faker::Name.name
     email = "example-#{n+1}@railstutorial.org"
@@ -34,9 +43,3 @@ User.create!(name:  "Mike",
                  activated: true,
                  activated_at: Time.zone.now )
 end
-
-TopicPost.creare!(user: 1,
-                  board: 1,
-                  content: "Stuff! Things!"
-                  root_post: 1,
-                  is_topic_post: true )
