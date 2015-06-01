@@ -34,3 +34,9 @@ User.create!(name:  "Mike",
                  activated: true,
                  activated_at: Time.zone.now )
 end
+
+TopicPost.creare!(user: 1,
+                  board: 1,
+                  content: "Stuff! Things!"
+                  root_post: 1,
+                  is_topic_post: true )
