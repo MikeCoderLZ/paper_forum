@@ -4,7 +4,7 @@ class BoardsController < ApplicationController
     # always displays the root board "Main"
     def index
         @board = Board.find( 1 )
-        @topics = @board.topics.all
+        @topics = @board.topics
     end
     # Shows the given board, it's subboards, etc.
     def show
